@@ -24,7 +24,7 @@ int main()
     }
     my_addr.sin_family = AF_INET;
     my_addr.sin_port = htons(SERVPORT);
-    my_addr.sin_addr.s_addr = INADDR_ANY;
+    my_addr.sin_addr.s_addr = INADDR_ANY;   /*INADDR_ANY就是指定地址为0.0.0.0的地址*/
     bzero(&(my_addr.sin_zero), 8);
     if((bind(sock_fd, (struct sockaddr *)&my_addr, sizeof(struct sockaddr))) == -1) {
         perror("bind error!\n");
@@ -40,7 +40,7 @@ int main()
             perror("accept error!\n");
             continue;
         }
-        printf("received a connection from %s\n", inet_ntoa(remote_addr.sin_addr));
+        printf("received a connection from %s\n", inet_ntoa(remote_addr.sin_addr));/*将二进制的IP转换为点分十进制*/
         if(!fork()) {
             if(send(client_fd, "hello, you are connected!\n", 26, 0) == -1) {
                 perror("send error!\n");

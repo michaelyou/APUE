@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 {
     int sock_fd, recvbypes;
     char buf[MAXDATASIZE];
-    struct hostent *host;
+    //struct hostent *host;
     struct sockaddr_in serv_addr;
     if(argc < 2) {
         fprintf(stderr, "please input the server hostname!\n");
